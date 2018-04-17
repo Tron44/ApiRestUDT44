@@ -6,6 +6,9 @@
    <artifactId>ApiUDT44</artifactId>
    <version>1.0.0</version>
    <packaging>war</packaging>
+   <properties>
+		<wtpversion>1.5</wtpversion>
+	</properties>
    <build>
       <sourceDirectory>src</sourceDirectory>
       <plugins>
