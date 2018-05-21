@@ -164,7 +164,7 @@ public class CuestionarioDAO {
 		try {
 			stmt = conexion.prepareStatement(
 					"select idCuestionario, nombreCuestionario, publicacion, idAsignatura from cuestionarioudima.cuestionario\r\n"
-							+ "where publicacion=1 and idAsignatura = " + asignaturaSel);			
+							+ "where publicacion=1 and idAsignatura = " + asignaturaSel + "and publicacion=1");			
 			ResultSet rs = stmt.executeQuery();			
 			while (rs.next()) {
 				tablaCuestionario = new TablaCuestionario();
