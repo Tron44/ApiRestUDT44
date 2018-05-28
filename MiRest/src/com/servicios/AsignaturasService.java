@@ -7,13 +7,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.QueryParam;
 
 import org.json.JSONException;
 
 import com.clases.TablaAsignatura;
 import com.daos.CuestionarioDAO;
 import com.daos.DaoException;
+import com.sun.jersey.api.json.JSONWithPadding;
 
 /**
  * Servicio para recuperar las asignaturas existentes en el sistema, se le pasa
@@ -27,7 +28,7 @@ public class AsignaturasService {
 
 	@GET
 	@Produces("application/json")
-	public Response getAsignaturas(@PathParam("gradopas") String gradopas) throws JSONException {
+	public JSONWithPadding getAsignaturas(@PathParam("gradopas") String gradopas, @QueryParam("callback") String callback) throws JSONException {
 		CuestionarioDAO cdao = new CuestionarioDAO();
 		ArrayList<TablaAsignatura> listaAsignaturas = null;
 		try {
@@ -37,6 +38,7 @@ public class AsignaturasService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return Response.status(200).entity(listaAsignaturas.toString()).build();
+		//return Response.status(200).entity(listaAsignaturas.toString()).build();
+		return new JSONWithPadding("callback(" + listaAsignaturas.toString()+ ")", callback);
 	}
 }

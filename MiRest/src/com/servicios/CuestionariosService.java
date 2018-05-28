@@ -7,13 +7,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.QueryParam;
 
 import org.json.JSONException;
 
 import com.clases.TablaCuestionario;
 import com.daos.CuestionarioDAO;
 import com.daos.DaoException;
+import com.sun.jersey.api.json.JSONWithPadding;
 
 /**
  * Servicio para recuperar los cuestinarios existentes en el sistema, se le pasa
@@ -27,7 +28,7 @@ public class CuestionariosService {
 
 	@GET
 	@Produces("application/json")
-	public Response getCuestionarios(@PathParam("asigpas") String asigpas) throws JSONException {
+	public JSONWithPadding getCuestionarios(@PathParam("asigpas") String asigpas, @QueryParam("callback") String callback) throws JSONException {
 		CuestionarioDAO cdao = new CuestionarioDAO();
 		ArrayList<TablaCuestionario> listaCuestionarios = null;		
 		try {
@@ -37,6 +38,7 @@ public class CuestionariosService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return Response.status(200).entity(listaCuestionarios.toString()).build();
+		//return Response.status(200).entity(listaCuestionarios.toString()).build();
+		return new JSONWithPadding("callback(" + listaCuestionarios.toString()+ ")", callback);
 	}
 }
