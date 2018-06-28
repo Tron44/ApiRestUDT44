@@ -169,7 +169,7 @@ public class CuestionarioDAO {
 			while (rs.next()) {
 				tablaCuestionario = new TablaCuestionario();
 				tablaCuestionario.setIdCuestionario(rs.getInt("idCuestionario"));
-				tablaCuestionario.setNombreCuestionario(rs.getString("nombreCuestionario"));
+				tablaCuestionario.setNombreCuestionario(rs.getString("nombreCuestionario").replaceAll("\"", "'"));
 				tablaCuestionario.setPublicacion(rs.getInt("publicacion"));
 				tablaCuestionario.setIdAsignatura(rs.getInt("idAsignatura"));
 				listaCuestionarios.add(tablaCuestionario);
@@ -243,7 +243,7 @@ public class CuestionarioDAO {
 				listaRespuestas = new ArrayList<TablaRespuesta>();
 				tablaPregunta = new TablaPregunta();
 				idPreg = rs.getInt("idPregunta");
-				txtPreg = rs.getString("textoPregunta");
+				txtPreg = rs.getString("textoPregunta").replaceAll("\"", "'");
 				tipoPreg = rs.getString("tipoPregunta");
 				tablaPregunta.setIdPregunta(idPreg);
 				tablaPregunta.setTextoPregunta(txtPreg);
@@ -253,7 +253,7 @@ public class CuestionarioDAO {
 				do {
 					tablaRespuesta = new TablaRespuesta();
 					idResp = rs.getInt("idRespuesta");
-					txtResp = rs.getString("textoRespuesta");
+					txtResp = rs.getString("textoRespuesta").replaceAll("\"", "'");
 					tablaRespuesta.setIdRespuesta(idResp);
 					tablaRespuesta.setTextoRespuesta(txtResp);
 					if (primeravez == 0) {

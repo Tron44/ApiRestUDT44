@@ -34,8 +34,7 @@ public class TablaGrado implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		// [{"id":1,"description":"DESC1"},{"id":2,"description":"DESC2"},{"id":3,"description":"DESC3"}]
+	public String toString() {		
 		return "{\"idGrado\":\"" + idGrado + "\", \"nombreGrado\":\"" + nombreGrado + "\"}";
 	}
 

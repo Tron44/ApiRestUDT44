@@ -39,7 +39,11 @@ public class FiltroCors implements Filter {
 
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
 		// Autorización para llamadas http
-		((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin", "*");
+		((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Origin", "*");		
+		((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Origin", "*");
+		((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Credentials", "true");
+		((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+		((HttpServletResponse) servletResponse).setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 		((HttpServletResponse) servletResponse).addHeader("Access-Control-Allow-Methods",
 				"GET, OPTIONS, HEAD, PUT, POST");
 
